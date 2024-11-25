@@ -1,0 +1,19 @@
+version: '3.8'
+services:
+  bind:
+    image: ubuntu/bind9:9.18-22.04_beta
+    container_name: bind9-container
+    restart: always
+    hostname: 'bind9-docker'
+    user: "0:0"
+    environment:
+      - TZ=UTC
+    ports:
+      - '53:53/udp'
+      - '53:53/tcp'
+    volumes:
+      - ./config:/etc/bind
+      - /etc/localtime:/etc/localtime:ro
+    command: sh -c "named -u bind -g"
+
+ 

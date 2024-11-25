@@ -1,0 +1,6 @@
+zone "gitlab" {
+    type master;
+    file "/etc/bind/db.gitlab";
+    allow-transfer { none; };
+};
+

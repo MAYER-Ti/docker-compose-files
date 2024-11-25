@@ -1,0 +1,20 @@
+version: '3.8'
+services:
+  gitlab:
+    image: gitlab/gitlab-ce:16.7.3-ce.0
+    container_name: gitlab-container
+    restart: always
+    hostname: 'gitlab'
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url 'http://gitlab'
+    ports:
+      - '80:80'
+      - '443:443'
+      - '22:22'
+    volumes:
+      - '/home/mayer/docker-compose-files/gitlab/config:/etc/gitlab'
+      - '/home/mayer/docker-compose-files/gitlab/logs:/var/log/gitlab'
+      - '/home/mayer/docker-compose-files/gitlab/data:/var/opt/gitlab'
+      - '/etc/localtime:/etc/localtime'
+    shm_size: '256m'
